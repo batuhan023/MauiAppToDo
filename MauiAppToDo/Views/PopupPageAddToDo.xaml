@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="MauiToolkitPopupSample.PopupPageAddToDo"
+             xmlns:viewmodel="clr-namespace:MauiAppToDo.ViewModel"
+             xmlns:models="clr-namespace:MauiAppToDo.Models"
+             x:DataType="viewmodel:MainViewModel"
+           CanBeDismissedByTappingOutsideOfPopup="True">
+    
+    <VerticalStackLayout BackgroundColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+        
+        <Label 
+            Margin="15"
+            Text="Rename Your ToDo"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="28"
+            FontAttributes="Bold"/>
+
+        <Entry 
+                Placeholder="Rename Your ToDo!"
+                TextColor="Black"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" 
+                FontSize="20"
+                Text="{Binding Newtitle}"
+                x:Name="ToDoNameEntry"
+                />
+
+        <Button Margin="10" 
+                Text="Update" 
+                Command="{Binding UpdateTitleCommand}" 
+                FontSize="20"/>
+        
+    </VerticalStackLayout>
+</mct:Popup>

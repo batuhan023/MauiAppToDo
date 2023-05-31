@@ -23,6 +23,11 @@ public partial class MainViewModel : ObservableObject
     string newtitle;
     [ObservableProperty]
     string to_do2;
+    [ObservableProperty]
+    string description;
+
+    [ObservableProperty]
+    bool isPopupVisible;
 
 
     [ObservableProperty]
@@ -36,6 +41,7 @@ public partial class MainViewModel : ObservableObject
 
     public MainViewModel()
     {
+        IsPopupVisible = false;
         _toDoListService= new ToDoListService();
         TodoItems = new ObservableCollection<ToDoLists>();
         ComplatedList = new ObservableCollection<ToDoLists>();
@@ -64,7 +70,7 @@ public partial class MainViewModel : ObservableObject
                 {
                     TodoItems.Add(item);
                 }
-                else
+                else if(item.IsActive == true)
                 {
                     complatedList.Add(item);
                 }
@@ -93,7 +99,8 @@ public partial class MainViewModel : ObservableObject
         if (createdToDoList != null)
         {
              TodoItems.Add(createdToDoList);
-             To_do = string.Empty;          
+             To_do = string.Empty;  
+             To_do2 = string.Empty;
         }     
     }
 
@@ -109,6 +116,7 @@ public partial class MainViewModel : ObservableObject
                 TodoItems.Remove(toDoLists);
             }
             TodoItems.Remove(toDoLists);
+            ComplatedList.Remove(toDoLists);
         }
     }
 
@@ -129,6 +137,30 @@ public partial class MainViewModel : ObservableObject
     //    }
     //}
 
+    private ToDoLists _selectedToDo;
+
+    [RelayCommand]
+     async Task UpdateParam(ToDoLists toDoLists)
+    {
+        To_do = toDoLists.Title;
+        Description = toDoLists.Description;
+        IsPopupVisible = true;
+        _selectedToDo = toDoLists;
+     
+    }
+
+    [RelayCommand]
+    async Task UpdateToDo()
+    {
+
+        _selectedToDo.Title = To_do;
+        _selectedToDo.Description = Description;
+        if (_selectedToDo == null) return;
+        await _toDoListService.UpdateToDoList(_selectedToDo);
+        TodoItems.Remove(_selectedToDo);
+        TodoItems.Add(_selectedToDo);
+        IsPopupVisible = false;
+    }
 
     [RelayCommand]
     async Task Update(ToDoLists item)

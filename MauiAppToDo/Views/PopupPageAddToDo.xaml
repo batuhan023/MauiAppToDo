@@ -7,32 +7,64 @@
              xmlns:models="clr-namespace:MauiAppToDo.Models"
              x:DataType="viewmodel:MainViewModel"
            CanBeDismissedByTappingOutsideOfPopup="True">
-    
-    <VerticalStackLayout BackgroundColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
-        
-        <Label 
-            Margin="15"
-            Text="Rename Your ToDo"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            FontSize="28"
-            FontAttributes="Bold"/>
+    <CollectionView ItemsSource="{Binding TodoItems}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:ToDoLists">
+                <VerticalStackLayout  BackgroundColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" >
+                    <Label 
+                            Margin="15"
+                            Text="Rename Your ToDo"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Center"
+                            FontSize="28"
+                            FontAttributes="Bold"/>
 
-        <Entry 
+
+                    <Entry 
                 Placeholder="Rename Your ToDo!"
                 TextColor="Black"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" 
                 FontSize="20"
-                Text="{Binding Newtitle}"
+                Text="{Binding Title, Mode=TwoWay}"
                 x:Name="ToDoNameEntry"
                 />
+                    <Entry 
+                Placeholder="Rename Your ToDo!"
+                TextColor="Black"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" 
+                FontSize="20"
+                Text="{Binding Description, Mode=TwoWay}"
+                />
 
-        <Button Margin="10" 
+
+                <Button Margin="10" 
                 Text="Update" 
+                FontSize="20"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=UpdadteTitleCommand}"
+                CommandParameter="{Binding .}"/>
+
+                </VerticalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+    
+    <!--<VerticalStackLayout BackgroundColor="White" BindingContext="TodoItems" >
+        <Label Margin="15" Text="Update ToDo!" TextColor="Black" VerticalOptions="Center" 
+            HorizontalOptions="Center" FontSize="28"
+            FontAttributes="Bold"/>
+        <Editor Margin="20,0" Placeholder="Enter Your ToDo" PlaceholderColor="Black" TextColor="Black" FontSize="20" 
+                Text="{Binding To_do}"
+                x:Name="ToDoNameEntry"/>
+        <Editor Margin="20,0" Placeholder="Enter Your Description" TextColor="Black" PlaceholderColor="Black" FontSize="20" 
+                Text="{Binding Description}"/>
+        <Button Margin="35,10" Text="Update" 
                 Command="{Binding UpdateTitleCommand}" 
-                FontSize="20"/>
-        
-    </VerticalStackLayout>
+                FontSize="20" BackgroundColor="{StaticResource oneColor}"/>
+    </VerticalStackLayout>-->
+
 </mct:Popup>

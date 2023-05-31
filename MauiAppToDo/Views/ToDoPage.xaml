@@ -5,8 +5,9 @@
              xmlns:viewmodel="clr-namespace:MauiAppToDo.ViewModel"
              xmlns:models="clr-namespace:MauiAppToDo.Models"
              x:DataType="viewmodel:MainViewModel"
-             Title="To Do Page"
-             BackgroundColor="{StaticResource Blue200Accent}">
+             BackgroundColor="Transparent"
+             Title="ToDoApp"
+             BackgroundImageSource="arka.jpg">
 
 
     <!--<ContentPage.ToolbarItems>
@@ -17,58 +18,83 @@
 
     <ScrollView>
         <VerticalStackLayout Margin="20">
-
-            <Grid ColumnDefinitions="*,*,*">
-                <Label Grid.Column="0" 
-                       Text="Welcome!" 
-                       FontSize="23"   
-                       FontAttributes="Bold"></Label>
-                <Label Grid.Column="1"    
+            <StackLayout Margin="1">
+                <Image Margin="0,10,0,0" Source="welcome2.png" HeightRequest="90"></Image>
+                <Label HorizontalOptions="Center"
                        x:Name="LblUserName" 
-                       FontSize="23"   
-                       FontAttributes="Bold"></Label>
-                <Label Grid.Column="2"    
-                       x:Name="LblUserEmail" 
-                       FontSize="23"   
-                       FontAttributes="Bold"></Label>
-            </Grid>
+                       TextColor="Black"
+                       FontSize="30"
+                       FontAttributes="Italic"></Label>
+            </StackLayout>
+
 
             <!--Add to do-->
-            <Entry Placeholder="Add To Do" 
-                   TextColor="{StaticResource Primary}"
-                   PlaceholderColor="{StaticResource Primary}" 
-                   FontAttributes="Bold" 
-                   FontSize="14" 
+                <StackLayout Margin="0,40,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                <Frame BackgroundColor="RosyBrown"  CornerRadius="20">
+                    <Entry Placeholder="ToDo Title"     
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   PlaceholderColor="Black"
+                   FontAttributes="Italic"
+                   FontSize="14"
                    Text="{Binding To_do}" 
-                   Margin="0,15,0,0"
                    x:Name="ToDoNameEntry"/>
-            <Entry Placeholder="Add To Do" 
-                   TextColor="{StaticResource Primary}"
-                   PlaceholderColor="{StaticResource Primary}" 
-                   FontAttributes="Bold" 
-                   FontSize="14" 
+                </Frame>
+                <Frame BackgroundColor="RosyBrown"  CornerRadius="20" Margin="0,3,0,0">
+                    <Entry Placeholder="ToDo Description (Max 85 Char)" 
+                   TextColor="Black"
+                   PlaceholderColor="Black" 
+                   FontAttributes="Italic"
+                   FontSize="14"
                    Text="{Binding To_do2}" 
-                   Margin="0,15,0,0"
-                   x:Name="ToDoNameEntry2"/>
-
-            <Button Text="Add" 
-                    FontSize="16" 
+                   x:Name="ToDoNameEntry2"
+                    HorizontalOptions="Center"/>
+                 </Frame>
+                    <ImageButton  
+                    Source="add.png"
+                    BackgroundColor="Transparent"
                     Command="{Binding AddToDoCommand}" 
-                    Padding="0,10,0,10" 
-                    CornerRadius="4"/>
+                    Padding="0,8,0,10" 
+                    WidthRequest="79"
+                    HeightRequest="70"
+                    CornerRadius="5"/>
+                </StackLayout>
+
+          
+
+
+            <Frame BackgroundColor="{StaticResource fourColor}" CornerRadius="15" BorderColor="Transparent" Margin="10,10" x:Name="PopupView" IsVisible="{Binding IsPopupVisible}">
+                <StackLayout>
+                    <Editor Placeholder="Your ToDo" PlaceholderColor="Black" FontSize="16" Text="{Binding To_do}" x:Name="ToDoNameEntry22"/>
+                    <BoxView  HeightRequest="1" Color="{StaticResource Primary}" HorizontalOptions="FillAndExpand" />
+                    <Editor Placeholder="Your Description" PlaceholderColor="Black" FontSize="16" Text="{Binding Description}" />
+                    <BoxView  HeightRequest="1" Color="{StaticResource Primary}" HorizontalOptions="FillAndExpand" />
+                    <ImageButton Margin="0,10,0,0" Padding="1" HorizontalOptions="EndAndExpand" WidthRequest="30" HeightRequest="30"
+                                  Command="{Binding UpdateToDoCommand}">
+                        <ImageButton.Source>
+                            <FileImageSource File="edit2.png" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                </StackLayout>
+            </Frame>
+
+
 
             <!--ToDo List-->
-            <Label Margin="0,15,0,5" Text="To Do List" FontSize="20" FontAttributes="Bold" />
-            <CollectionView ItemsSource="{Binding TodoItems}">
+            <HorizontalStackLayout Margin="0,30,0,5">
+                <Label Margin="8,22,0,4" Text="ToDo List" TextColor="Black" FontSize="20" FontAttributes="Bold" />
+                <Image Source="first.png"  HeightRequest="36" Margin="7,0,0,0"></Image>
+            </HorizontalStackLayout>
+            <!--<CollectionView ItemsSource="{Binding TodoItems}">
                
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ToDoLists">
 
-                        <Frame Margin="0,5,0,0" CornerRadius="4" BorderColor="{StaticResource Primary}">
+                        <Frame Margin="8,3" CornerRadius="10" BackgroundColor="RosyBrown" HeightRequest="97" BorderColor="{StaticResource Primary}">
 
                             <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                                <Button Margin="0,5,10,0" WidthRequest="15" 
+                                <Button Margin="0,0,10,0" WidthRequest="15" 
                                             HeightRequest="15" CornerRadius="2"  
                                             BorderWidth="2" BorderColor="Black" BackgroundColor="White"
                                             x:Name="checkBox"
@@ -76,28 +102,29 @@
                                             CommandParameter="{Binding .}">
                                 </Button>
                                     
-                                <!--<Label Text="{Binding Title}" HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="CenterAndExpand"></Label>-->
+                                --><!--<Label Text="{Binding Title}" HorizontalOptions="StartAndExpand" FontSize="16" VerticalOptions="CenterAndExpand"></Label>--><!--
                                 <StackLayout>
-                                    <Entry Text="{Binding Title, Mode=TwoWay}" FontAttributes="Bold" HorizontalOptions="StartAndExpand" FontSize="16"></Entry>
-                                    <Entry Text="{Binding Description, Mode=TwoWay}" Margin="0,5,0,0" FontAttributes="Bold" HorizontalOptions="StartAndExpand" FontSize="12"></Entry>
+
+                                    <Entry Text="{Binding Title, Mode=TwoWay}" TextColor="Black" HorizontalOptions="StartAndExpand" FontSize="13"></Entry>
+                                    <Editor Text="{Binding Description, Mode=TwoWay}" MaxLength="85" Margin="0,2,0,10" TextColor="Black" WidthRequest="250" HorizontalOptions="StartAndExpand" FontSize="10"></Editor>
                                 </StackLayout>
 
-                                <Button x:Name="BtnPopup" 
-                                        Text="Up" 
-                                        TextColor="Black"
-                                        BackgroundColor="Red"
+                                <ImageButton x:Name="BtnPopup" 
+                                        Source="edit2.png"
+                                        BackgroundColor="RosyBrown"
                                         HorizontalOptions="EndAndExpand"
+                                        HeightRequest="30"
                                         Padding="2"
-                                        FontSize="14"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=UpdateTitleCommand}"
                                         CommandParameter="{Binding .}"
                                         >
 
-                                </Button>
-                                <Button  Text="Del" BackgroundColor="Red"
-                                         FontSize="14"
+                                </ImageButton>
+                                <ImageButton  BackgroundColor="RosyBrown"
+                                         Source="delete2.png"
+                                         HeightRequest="30"
                                          Padding="2"
-                                         TextColor="Black"
+                                         Margin="5,0,0,0"
                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=DeleteCommand}"
                                          CommandParameter="{Binding .}" 
                                          />
@@ -106,43 +133,88 @@
                     
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
+            <CollectionView   ItemsSource="{Binding TodoItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ToDoLists">
+                        <Frame Padding="10" Margin="8,2"  BackgroundColor="RosyBrown" CornerRadius="20" BorderColor="Transparent">
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <Button Margin="5" WidthRequest="17" HeightRequest="17" CornerRadius="2" BorderWidth="2" BorderColor="Transparent" BackgroundColor="{StaticResource fiveColor}"
+                                            x:Name="checkBox"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=ComplatedToDoCommand}"
+                                            CommandParameter="{Binding .}">
+                                </Button>
+                                <Label BackgroundColor="Transparent"  Margin="5" Text="{Binding Title}" FontAttributes="None" TextColor="Black" HorizontalOptions="StartAndExpand" FontSize="16"></Label>
+                                <ImageButton  Padding="0" BackgroundColor="Transparent"   HorizontalOptions="EndAndExpand" WidthRequest="18" HeightRequest="18"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=UpdateParamCommand}"
+                                         CommandParameter="{Binding .}" >
+                                    <ImageButton.Source>
+                                        <FileImageSource File="edit2.png" />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <ImageButton  Margin="10,0,5,0" Padding="0" HorizontalOptions="End" WidthRequest="20" HeightRequest="20"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=DeleteCommand}"
+                                         CommandParameter="{Binding .}" >
+                                    <ImageButton.Source>
+                                        <FileImageSource File="delete2.png" />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
+
 
 
 
 
             <!--complated list-->
-            <Label Margin="0,15,0,5" Text="Completed" FontSize="20" 
-                       FontAttributes="Bold" />
+            <StackLayout Margin="0,20,0,0">
+                <HorizontalStackLayout>
+                    <Label Text="Completed ToDos" TextColor="Black" FontSize="20" 
+                       FontAttributes="Bold" Margin="8,26,0,5"/>
+                    <Image Source="goal.png"  HeightRequest="38" Margin="6,0,0,0"></Image>
+                </HorizontalStackLayout>
+            
             <CollectionView ItemsSource="{Binding ComplatedList}">
-               
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ToDoLists">
-
-                        <Frame CornerRadius="4" Margin="4" 
-                               BackgroundColor="DimGray" 
-                               BorderColor="{StaticResource Primary}">
-                            <HorizontalStackLayout>
-                                <CheckBox x:Name="checkBox" IsChecked="True"></CheckBox>
-                                <Label Text="{Binding Title}"
-                                       FontSize="Medium">
-                                    <Label.Triggers>
-                                        <DataTrigger Binding="{Binding Source={x:Reference checkBox},Path=IsChecked}"
-                                                     TargetType="Label"
-                                                     Value="True">
-                                            <Setter Property="TextDecorations"
-                                                    Value="Strikethrough"/>
-                                        </DataTrigger>
-                                    </Label.Triggers>
+                        <Frame CornerRadius="20" Margin="8,2"
+                               Padding="10"
+                               BackgroundColor="RosyBrown" 
+                               BorderColor="Transparent">
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                    <CheckBox x:Name="checkBox" IsChecked="True"></CheckBox>
+                                    <Label Text="{Binding Title}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="Center"
+                                       TextColor="Black"
+                                       TextDecorations="Strikethrough"
+                                       Margin="5,2"    
+                                       MaxLines="1"
+                                       FontSize="13">
                                 </Label>
-                            </HorizontalStackLayout>
+                                
+                                <ImageButton  BackgroundColor="RosyBrown"
+                                         Source="delete2.png"
+                                         HeightRequest="25"
+                                         WidthRequest="25"   
+                                         Padding="0"
+                                         HorizontalOptions="EndAndExpand"
+                                         Margin="10,0,5,0"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=DeleteCommand}"
+                                         CommandParameter="{Binding .}" 
+                                         />
+                            </StackLayout>
                         </Frame>
 
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
- 
-            
+
+            </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

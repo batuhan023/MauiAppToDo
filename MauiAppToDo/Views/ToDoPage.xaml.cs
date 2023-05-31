@@ -22,7 +22,7 @@ public partial class ToDoPage : ContentPage
         string userEmail = Preferences.Get("UserEmail", string.Empty);
            
         LblUserName.Text = userName;  
-        LblUserEmail.Text = userEmail;
+        //LblUserEmail.Text = userEmail;
     }
     //private async void BtnClickedPopup(object sender, EventArgs e)
     //{
@@ -33,5 +33,7 @@ public partial class ToDoPage : ContentPage
     private void BtnClickedPopup(object sender, EventArgs e)
     {
         this.ShowPopup(new PopupPageAddToDo());
+        //MainViewModel mainView = new MainViewModel();
+        //mainView.UpdateTitle();
     }
 }

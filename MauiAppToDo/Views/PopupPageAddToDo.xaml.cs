@@ -1,15 +1,20 @@
+
 using CommunityToolkit.Maui.Views;
 using MauiAppToDo.ViewModel;
+
 
 namespace MauiToolkitPopupSample;
 
 public partial class PopupPageAddToDo :Popup
 {
-	public PopupPageAddToDo( )
+
+    public PopupPageAddToDo()
 	{
-		InitializeComponent();
- 
-	}
+        InitializeComponent();
+        //BindingContext = viewModel;
+
+        //viewModel.InitializeAsync();
+    }
 
     private void Button_Clicked(object sender, EventArgs e)
     {

@@ -89,6 +89,7 @@ namespace MauiAppToDo.Services
 
         //}
 
+
         public async Task<ToDoLists> Put(int id, bool isNewItem = false)
         {
             var response = await _httpClient.PutAsync($"{ApiUrl}/ToDos/Put?Id={id}", null);
@@ -100,6 +101,22 @@ namespace MauiAppToDo.Services
             }
             return null;
         }
+
+        public async Task<ToDoLists> UpdateToDoList(ToDoLists toDoLists)
+        {
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync($"{ApiUrl}/ToDos/Put?Id={toDoLists.Id}", toDoLists);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<ToDoLists>();
+            }
+            catch (Exception)
+            {
+                return null; 
+            }
+        }
+
+
 
         // /ToDos/CompleteToDoList?id=8
         //complated

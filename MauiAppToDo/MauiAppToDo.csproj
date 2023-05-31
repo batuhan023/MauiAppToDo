@@ -60,7 +60,61 @@
 	 
 	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
 	 
+	  <None Remove="Resources\Images\add.png" />
+	 
+	  <None Remove="Resources\Images\add2.png" />
+	 
+	  <None Remove="Resources\Images\addition.png" />
+	 
+	  <None Remove="Resources\Images\arka.jpg" />
+	 
+	  <None Remove="Resources\Images\arka3.jpg" />
+	 
+	  <None Remove="Resources\Images\checked.png" />
+	 
+	  <None Remove="Resources\Images\cross.png" />
+	 
+	  <None Remove="Resources\Images\cross1.png" />
+	 
+	  <None Remove="Resources\Images\delete.png" />
+	 
+	  <None Remove="Resources\Images\delete2.png" />
+	 
+	  <None Remove="Resources\Images\edit.png" />
+	 
+	  <None Remove="Resources\Images\edit2.png" />
+	 
+	  <None Remove="Resources\Images\first.png" />
+	 
+	  <None Remove="Resources\Images\giris.png" />
+	 
+	  <None Remove="Resources\Images\goal.png" />
+	 
 	  <None Remove="Resources\Images\loginlogo.jpg" />
+	 
+	  <None Remove="Resources\Images\quality.png" />
+	 
+	  <None Remove="Resources\Images\rocket.png" />
+	 
+	  <None Remove="Resources\Images\signin2.png" />
+	 
+	  <None Remove="Resources\Images\target.png" />
+	 
+	  <None Remove="Resources\Images\target1.png" />
+	 
+	  <None Remove="Resources\Images\target2.png" />
+	 
+	  <None Remove="Resources\Images\todo.png" />
+	 
+	  <None Remove="Resources\Images\update.png" />
+	 
+	  <None Remove="Resources\Images\welcome.png" />
+	 
+	  <None Remove="Resources\Images\welcome2.png" />
+	 
+	  <None Remove="Resources\Images\welcome3.png" />
+	 
+	  <None Remove="Resources\Images\xbutton.png" />
 	  <None Remove="Resources\Splash\splash.svg" />
 	</ItemGroup>
 

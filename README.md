@@ -2,17 +2,23 @@
 ToDoApp---.Net-MAUI
 
 .NET MAUI
+
 MVVM
+
 ASP.NET CORE WEB API
+
 ENTITY FRAMEWORK
+
 MSSQL
+
+
 
 ![todo1](https://github.com/batuhan023/MauiAppToDo/assets/92747705/4a41eb5b-2f49-454e-ade6-55cfd84c5d7c)
 
 
 --------------------------------------------------------------------------------------------------------
 
-![Uploading todo2.png…]()
+![todo2](https://github.com/batuhan023/MauiAppToDo/assets/92747705/c54017b2-12b1-4368-9d2c-22a5539edd68)
 
 
 -------------------------------------------------------------------------------------------------------
